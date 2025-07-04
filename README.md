@@ -1,6 +1,6 @@
 # Factor-Based Portfolio Optimizer
 
-An end-to-end quantitative finance project to build, optimize, and evaluate equity portfolios using fundamental and price-based factors.
+An end-to-end project to build, optimize, and evaluate equity portfolios using fundamental and price-based factors.
 
 ## Overview
 
