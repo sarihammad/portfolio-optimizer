@@ -17,7 +17,7 @@ from typing import Dict
 def run_backtest(
     price_df: pd.DataFrame,
     weights: Dict[str, float],
-    rebalance_freq: str = "M"
+    rebalance_freq: str = "ME"
 ) -> pd.DataFrame:
     """
     Runs a backtest of a weighted stock portfolio with periodic rebalancing.
@@ -25,7 +25,7 @@ def run_backtest(
     Args:
         price_df (pd.DataFrame): Daily adjusted close prices with tickers as columns.
         weights (Dict[str, float]): Dictionary of {ticker: weight}.
-        rebalance_freq (str): Rebalance frequency ('M' = monthly, 'Q' = quarterly).
+        rebalance_freq (str): Rebalance frequency ('ME' = monthly, 'QE' = quarterly).
 
     Returns:
         pd.DataFrame: Backtest results with equity curve and daily returns.
@@ -43,7 +43,7 @@ def run_backtest(
         weight_df.loc[date] = weights
 
     # forward-fill weights and align with price index
-    weight_df = weight_df.ffill().reindex(price_df.index).fillna(method='ffill')
+    weight_df = weight_df.ffill().reindex(price_df.index).ffill()
 
     # calculate daily returns
     daily_returns = price_df.pct_change().fillna(0)

@@ -20,7 +20,7 @@ def fetch_price_data(tickers: List[str], start: str, end: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: DataFrame with date as index and tickers as columns.
     """
-    df = yf.download(tickers, start=start, end=end)["Close"]
+    df = yf.download(tickers, start=start, end=end, auto_adjust=False)["Close"]
     return df.dropna(how="all")
 
 
